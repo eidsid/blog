@@ -1,0 +1,85 @@
+.Container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.LinksContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  height: 50px;
+}
+
+.NavToggle {
+  display: none;
+  cursor: pointer;
+
+  height: 30px;
+}
+
+.ToggleIcon {
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background-color: #3cc506;
+  position: relative;
+
+  transform: translateY(-50%);
+}
+.ToggleIcon::before,
+.ToggleIcon::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #3cc506;
+}
+
+.ToggleIcon::before {
+  top: -6px;
+}
+
+.ToggleIcon::after {
+  top: 6px;
+}
+
+@media (max-width: 768px) {
+  .Theme {
+    visibility: visible;
+  }
+  .NavToggle {
+    display: inline-block;
+  }
+  .LinksContainer {
+    flex-direction: column;
+    gap: 1.5rem;
+    visibility: hidden;
+  }
+  .Open {
+    height: fit-content;
+    visibility: visible;
+  }
+  .Link a {
+    padding: 0.5rem 1rem;
+    border: transparent 1px solid;
+    transition: border ease-in-out 0.2s;
+  }
+  .Link:hover a {
+    border-color: aqua;
+    border-radius: 15px;
+  }
+}
+
+.btn {
+  background: transparent;
+  color: inherit;
+  padding: 1rem;
+  border-width: 1px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  border: 1px solid;
+}
