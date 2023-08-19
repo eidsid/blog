@@ -1,0 +1,52 @@
+@import "./../../styles/globalsVarabiles.scss";
+$hoverColor: #53c28b;
+
+//page
+.catogrey {
+  @include flex(column, "", "", 1rem);
+  padding: 0.5rem 0 0 2rem;
+  gap: 1rem;
+  .catTitle {
+    color: rgb(10, 150, 10);
+  }
+  .item {
+    width: 100%;
+    height: 300px;
+    display: flex;
+
+    @include flex("", space-between);
+    &:nth-child(2n + 1) {
+      flex-direction: row-reverse;
+    }
+  }
+  .top {
+    display: flex;
+    .galleryLink {
+      font-size: 2rem;
+      &::after {
+        content: " - ";
+      }
+    }
+  }
+  .itemsContainer {
+    .item {
+      .subitem {
+        width: 45%;
+        height: 100%;
+        position: relative;
+        .title {
+          margin: 1rem 0;
+        }
+        &:nth-child(2) {
+          padding: 1rem 0 0 2rem;
+        }
+      }
+      @media (max-width: $mobile) {
+        flex-direction: column;
+        .subitem {
+          width: 100%;
+        }
+      }
+    }
+  }
+}

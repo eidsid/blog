@@ -1,0 +1,10 @@
+@import "../../styles/globalsVarabiles.scss";
+.footer {
+  padding: 0 1rem;
+  @include flex("row", space-between, center, 1rem);
+  height: $footerHeight;
+  .socalImages {
+    display: inherit;
+    gap: 0.3rem;
+  }
+}

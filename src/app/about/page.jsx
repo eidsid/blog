@@ -1,57 +1,47 @@
 import React from "react";
-import Styles from "./page.module.css";
+import "./style.scss";
 import Image from "next/image";
-import banner from "@/../public/banner.png";
-import Button from "@/components/Button/Button";
+import apps from "@/../public/apps.jpg";
 export const metadata = {
-  title: "about page",
-  description: "this is about page",
+  title: "Dev digtal Agency about page",
+  description:
+    "this about page Dev digtal Agency website provide web development services",
 };
 const page = () => {
   return (
-    <div className={Styles.container}>
-      <div className={Styles.banner}>
-        <Image src={banner} alt="banner image" />
-        <div className={Styles.text}>
-          <h2>Digital Storyellers</h2>
-          <h3>Handcrafting award winning digital experiences</h3>
+    <div className="about container">
+      <div className="top">
+        <Image src={apps} fill alt="banner image" />
+        <div className="content">
+          <div className="wrapper">
+            <h1>Dev digtal Agency about page</h1>
+            <p>
+              this about page Dev digtal Agency website provide web development
+              services
+            </p>
+          </div>
         </div>
       </div>
-      <div className={Styles.bottom}>
-        <div className={Styles.item}>
-          <h3>Who Are We</h3>
+      <div className="bottom">
+        <div className="col">
+          <h1>Whow Are We</h1>
           <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Minus
-            consectetur voluptas nostrum reprehenderit ipsum molestiae,
-            consequuntur fugiat dolor dignissimos impedit.
-          </p>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Dolorem
-            tempore maxime dignissimos commodi sint, recusandae, nemo in saepe
-            vel doloremque cumque! Alias, quibusdam odit obcaecati ullam
-            laudantium. Voluptatem inventore error impedit.
-          </p>
-          <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo enim
-            ipsum autem saepe dolor nobis corporis eum ut quisquam asperiores
-            dolorum ipsa, perferendis nisi aliquid ullam.
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
+            nostrum quibusdam praesentium impedit eligendi non ratione enim?
+            Iste tempore minus ad non laboriosam nostrum reiciendis? Atque ea
+            illum a dolorem!
           </p>
         </div>
-
-        <div className={Styles.item}>
-          <h3>What We Do</h3>
+        <div className="col">
+          <h1>Whate We Do</h1>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Hic autem
-            cupiditate maxime. fugiat possimus laudantium saepe officia corporis
-            omnis maiores suscipit et iusto ipsa? Ea quaerat atque veritatis
-            accusantium suscipit aliquid?
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
+            nostrum quibusdam praesentium impedit eligendi non ratione enim?
+            Iste tempore minus ad non laboriosam nostrum reiciendis? Atque ea
+            illum a dolorem! Lorem ipsum dolor sit amet consectetur adipisicing
+            elit. Debitis nostrum quibusdam praesentium impedit eligendi non
+            ratione
           </p>
-          <ul>
-            <li>- Creative illustrations</li>
-            <li>- Dynamic websites</li>
-            <li>- Fast and Handy Mobile Apps</li>
-          </ul>
-          <Button text="Contact" url="/contact" />
         </div>
       </div>
     </div>

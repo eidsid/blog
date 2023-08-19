@@ -1,60 +1,29 @@
 "use client";
-import React, { useEffect, useState } from "react";
-import styles from "./page.module.css";
+import React from "react";
+import "./style.scss";
 import { useSession } from "next-auth/react";
-import Link from "next/link";
-import CreatePost from "@/components/createpost/CreatePost";
-import axios from "axios";
-import PostShow from "@/components/PostShow/PostShow";
-
+import { redirect } from "next/navigation";
+import DashboardShow from "../components/dashboardShow/dashboardShow";
+export const metadata = {
+  title: "Dev digtal Agency dashboard page",
+  description:
+    "this dashboard page Dev digtal Agency website provide web development services",
+};
 const page = () => {
   const session = useSession();
-  console.log(session);
-  const [CreatePostPanelState, setCreatePostPanelState] = useState(false);
-  const [Posts, setPosts] = useState([]);
-  const updatePosts = async () => {
-    const posts = await axios.get("/api/posts/");
-    setPosts(posts.data);
-  };
-  useEffect(() => {
-    updatePosts();
-  }, [CreatePostPanelState]);
-  const handsPostPanel = () => {
-    setCreatePostPanelState((prev) => !prev);
-  };
+  const user = session?.data?.user;
+
+  if (session.status !== "authenticated") redirect("/dashboard/login");
   return (
-    <>
-      {session.status === "unauthenticated" ? (
-        <div className={styles.Logincontainer}>
-          <h1 className={styles.heading}>Login First </h1>
-          <div className={styles.links}>
-            <Link className={styles.link} href="dashboard/login">
-              Login
-            </Link>
-            <Link className={styles.link} href="dashboard/register">
-              Don't have an account?
-            </Link>
-          </div>
-        </div>
+    <div className="container">
+      {session.status === "unauthanticated" ? (
+        <h1>Login frist</h1>
       ) : (
-        <div className={styles.container}>
-          <div className={styles.createPost}>
-            <CreatePost
-              display={CreatePostPanelState}
-              handelCreatePostPanelState={setCreatePostPanelState}
-            />
-            <button className={styles.button} onClick={() => handsPostPanel()}>
-              Create Post
-            </button>
-          </div>
-          <div className={styles.postsList}>
-            {Posts.map((post) => {
-              return <PostShow post={post} updatePosts={updatePosts} />;
-            })}
-          </div>
+        <div>
+          <DashboardShow user={user} />
         </div>
       )}
-    </>
+    </div>
   );
 };
 

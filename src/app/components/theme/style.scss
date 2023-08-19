@@ -1,0 +1,25 @@
+@import "../../styles/globalsVarabiles.scss";
+.ballContainer {
+  display: flex;
+  border: 1px solid greenyellow;
+  border-radius: 20px;
+  padding: 5px;
+  position: relative;
+  width: 80px;
+  height: 30px;
+  .ball {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    @include flex(row, center, center, "");
+    left: 20%;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    transition: 1s all ease-in-out;
+
+    &.light {
+      left: 80%;
+    }
+  }
+}

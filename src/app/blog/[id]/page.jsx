@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "./page.module.css";
+import "./styles.scss";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -30,36 +30,31 @@ const page = async ({ params }) => {
   } = blog;
 
   return (
-    <div>
-      <div className={styles.top} id={_id}>
+    <div className="blog container">
+      <div className="top" id={_id}>
         <h1>
-          <Link href="/blog" className={styles.galleryLink}>
+          <Link href="/blog" className="galleryLink">
             Blogs
           </Link>
         </h1>
       </div>
 
-      <div className={styles.container}>
-        <div className={styles.top}>
-          <div className={styles.subitem}>
-            <h1 className={styles.title}>{title}</h1>
-            <p className={styles.paragraph}>{description}</p>
+      <div>
+        <div className="top">
+          <div className="subitem">
+            <h1 className="title">{title}</h1>
+            <p className="paragraph">{description}</p>
             <br />
-            <div className={styles.author}>
-              <Image
-                className={styles.img}
-                src={authorImage}
-                width={50}
-                height={50}
-              />{" "}
+            <div className="author">
+              <Image src={authorImage} width={50} height={50} />
               <p>{authorName}</p>
             </div>
           </div>{" "}
-          <div className={styles.subitem}>
+          <div className="subitem">
             <Image src={img} width={50} height={50} alt={title} />
           </div>
         </div>
-        <div className={styles.bottom}>
+        <div className="bottom">
           <p>{content}</p>
         </div>
       </div>

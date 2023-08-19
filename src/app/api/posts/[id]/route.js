@@ -1,4 +1,4 @@
-import Posts from "@/models/posts";
+import Posts from "@/models/Post";
 import { NextResponse } from "next/server";
 import connect from "@/app/utils/db";
 export const GET = async (reques, { params }) => {

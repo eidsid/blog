@@ -3,7 +3,7 @@ import React from "react";
 import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useState } from "react";
-import Styles from "./page.module.css";
+import "./style.scss";
 
 import Link from "next/link";
 const page = () => {
@@ -22,40 +22,29 @@ const page = () => {
   };
 
   return (
-    <div className={`Globalheight ${Styles.main}`}>
-      <form className={Styles.form} onSubmit={handleSubmit}>
-        <label className={Styles.label}>
+    <div className="container login">
+      <form onSubmit={handleSubmit}>
+        <label className="label">
           Email:
-          <input
-            name="email"
-            type="email"
-            onChange={handleChange}
-            className={Styles.input}
-            required
-          />
+          <input name="email" type="email" onChange={handleChange} required />
         </label>
-        <label className={Styles.label}>
+        <label>
           Password:
           <input
             name="password"
             type="password"
             onChange={handleChange}
-            className={Styles.input}
             required
           />
         </label>
-        <button type="submit" className={Styles.button} onClick={handleSubmit}>
+        <button type="submit" onClick={handleSubmit}>
           Login
         </button>
       </form>
 
-      <div className={Styles.flex}>
-        <button className={Styles.btn} onClick={() => signIn("github")}>
-          login with github
-        </button>
-        <Link className={Styles.link} href="/dashboard/register">
-          Create an account
-        </Link>
+      <div className="bottom">
+        <button onClick={() => signIn("github")}>login with github</button>
+        <Link href="/dashboard/register">Create an account</Link>
       </div>
     </div>
   );

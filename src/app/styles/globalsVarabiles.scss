@@ -1,0 +1,20 @@
+$headerHeight: 60px;
+$footerHeight: 40px;
+$mobile: 768px;
+@mixin flex($direction: "", $justify: "", $algin: "", $gap: "") {
+  display: flex;
+
+  @if ($direction!= "") {
+    flex-direction: $direction;
+  }
+
+  @if ($justify!= "") {
+    justify-content: $justify;
+  }
+  @if ($algin!= "") {
+    align-items: $algin;
+  }
+  @if ($gap!= "") {
+    gap: $gap;
+  }
+}

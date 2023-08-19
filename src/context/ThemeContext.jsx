@@ -1,18 +1,19 @@
 "use client";
-import "@/app/globals.css";
-import React, { createContext, useState } from "react";
 
+import React, { createContext, useState } from "react";
 export const ThemeContext = createContext();
 
-export const ThemeProvider = ({ children }) => {
+const ThemeProvider = ({ children }) => {
   const [Mode, setMode] = useState("dark");
-  const toggle = () => {
+  const toggleTheme = () => {
     setMode((prev) => (prev === "light" ? "dark" : "light"));
   };
 
   return (
-    <ThemeContext.Provider value={{ toggle, Mode }}>
+    <ThemeContext.Provider value={{ toggleTheme, Mode }}>
       <div className={`theme ${Mode}`}> {children}</div>
     </ThemeContext.Provider>
   );
 };
+
+export default ThemeProvider;

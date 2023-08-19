@@ -1,0 +1,44 @@
+@import "./globalsVarabiles.scss";
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  overflow-x: hidden;
+
+  font-size: 1rem;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul li {
+  list-style-type: none;
+}
+*::-webkit-scrollbar {
+  display: none;
+}
+* {
+  font-weight: bold;
+}
+
+.theme {
+  background-color: black;
+  color: white;
+  transition: 1s ease-in-out all;
+  &.light {
+    background-color: white;
+    color: black;
+  }
+}
+.container {
+  height: calc(100vh - ($footerHeight + $headerHeight));
+  max-width: 1300px;
+  margin: 0 auto;
+  overflow-y: scroll;
+}

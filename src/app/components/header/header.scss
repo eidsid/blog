@@ -1,0 +1,94 @@
+@import "../../styles/globalsVarabiles.scss";
+
+.header {
+  @include flex(row, space-between, "", "");
+  position: relative;
+  padding: 1rem;
+  width: 100%;
+  height: $headerHeight;
+  z-index: 9999;
+
+  .links {
+    display: inherit;
+    gap: 1rem;
+
+    a {
+      padding: 0.5rem 1.5rem;
+      border-radius: 1rem;
+      transition: all ease-in-out 0.3s;
+    }
+  }
+  .navToggle {
+    display: none;
+    cursor: pointer;
+    height: 30px;
+    .toggleIcon {
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background-color: #3cc506;
+      position: relative;
+      transform: translateY(-50%);
+
+      &::before,
+      &::after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 2px;
+        background-color: #3cc506;
+      }
+      &::before {
+        top: -6px;
+      }
+
+      &::after {
+        top: 6px;
+      }
+    }
+  }
+
+  @media (max-width: $mobile) {
+    .navToggle {
+      display: inline-block;
+    }
+
+    .links {
+      @include flex(column, "", center, "");
+      margin-top: $headerHeight;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 0;
+      overflow-y: hidden;
+      transition: 0.4s all linear;
+
+      &.active {
+        height: fit-content;
+        padding: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: $mobile) {
+  .theme {
+    &.dark .header .links {
+      background-color: rgb(158, 169, 155);
+      a:hover {
+        background: rgb(0, 0, 0);
+        color: rgb(255, 255, 255);
+        padding: 0.5rem 1rem;
+      }
+    }
+    &.light .header .links {
+      background-color: rgb(162, 162, 162);
+      a:hover {
+        background: rgb(255, 255, 255);
+        color: rgb(0, 0, 0);
+        padding: 0.5rem 1rem;
+      }
+    }
+  }
+}

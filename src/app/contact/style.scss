@@ -1,0 +1,57 @@
+@import "../styles/globalsVarabiles.scss";
+.contact {
+  @include flex(column, "", "", 3rem);
+  width: 100%;
+  .title {
+    text-align: center;
+    margin: 3rem auto;
+  }
+  .items {
+    @include flex("", space-evenly);
+    .item img {
+      object-fit: contain;
+      animation: hero 3s ease-in-out infinite;
+      @keyframes hero {
+        0% {
+          transform: translateY(-10px);
+        }
+        50% {
+          transform: translateY(10px);
+        }
+
+        100% {
+          transform: translateY(-10px);
+        }
+      }
+    }
+  }
+  @media (max-width: $mobile) {
+    .items {
+      @include flex(column, "", center);
+    }
+    .title {
+      text-align: center;
+      margin: 1rem auto;
+    }
+  }
+  form {
+    @include flex(column);
+    min-width: 400px;
+    .input {
+      padding: 0.2rem;
+      outline: none;
+      margin-top: 1rem;
+      background-color: transparent;
+      border-color: white;
+      color: white;
+      &:nth-child(3) {
+        min-height: 90px;
+      }
+    }
+  }
+}
+
+.theme.light .contact form .input {
+  color: black;
+  border-color: black;
+}

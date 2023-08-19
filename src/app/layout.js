@@ -1,11 +1,8 @@
-import "./globals.css";
-import { Roboto_Serif } from "next/font/google";
-import Footer from "@/components/footer/Footer";
-import Header from "@/components/header/Header";
-import { ThemeProvider } from "../context/ThemeContext";
-import AuthProvider from "@/components/AuthProvider/AuthProvider";
-const roboto = Roboto_Serif({ subsets: ["latin"] });
-
+import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
+import ThemeProvider from "@/context/ThemeContext";
+import "./styles/globals.scss";
+import AuthProvider from "./components/AuthProvider/AuthProvider";
 export const metadata = {
   title: "Dev digtal Agency",
   description: "Dev digtal Agency website provide web development services",
@@ -13,18 +10,15 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        <ThemeProvider>
-          <AuthProvider>
-            <div className={roboto.className + +"mainContainer"}>
-              <Header />
-              {children}
-              <Footer />
-            </div>
-            <div className="backLayer"></div>
-          </AuthProvider>
-        </ThemeProvider>
+    <html lang="en" suppressHydrationWarning={true}>
+      <body suppressHydrationWarning={true}>
+        <AuthProvider>
+          <ThemeProvider>
+            <Header />
+            {children}
+            <Footer />
+          </ThemeProvider>
+        </AuthProvider>
       </body>
     </html>
   );
