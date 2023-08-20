@@ -2,12 +2,13 @@ import React from "react";
 import "./styles.scss";
 import Image from "next/image";
 import Link from "next/link";
+import axios from "axios";
 
 const getData = async (id) => {
-  const res = await fetch(`http://localhost:3000/api/posts/${id}`);
-  if (!res.ok) throw new Error("fatch data failed");
-  return res.json();
+  const post = await axios.get(`/api/posts/${id}`);
+  return post.data;
 };
+
 export async function generateMetadata({ params }) {
   const blog = await getData(params.id);
   return {

@@ -1,16 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import axios from "axios";
 import "./style.scss";
+import Button from "../components/button/Button";
+import { ShortenText } from "../utils/ShortenText";
 
 export const metadata = {
   title: "blog page",
   description: "this is blog page contain all posts",
 };
 
-const page = async () => {
+const page = () => {
   const [postsData, setpostsData] = useState([]);
   const updatePosts = async () => {
     const posts = await axios.get("/api/posts/");
@@ -19,6 +20,7 @@ const page = async () => {
   };
 
   useEffect(() => {
+    console.log("rendered");
     updatePosts();
   }, []);
 
@@ -29,36 +31,24 @@ const page = async () => {
       </div>
       <div className="posts">
         {postsData.map(
-          ({
-            title,
-            description,
-            content,
-            img,
-            _id,
-            createdAt,
-            authorName,
-          }) => {
+          ({ title, description, content, img, _id, createdAt }) => {
             return (
-              <div className="post card-hover" key={_id}>
-                <Image
-                  src={img}
-                  alt={title + " image"}
-                  width={150}
-                  height={150}
-                />
-                <div className="content card-hover__content">
-                  <h1 className="title card-hover__title">{title}</h1>
-                  <p className="description card-hover__text">{description}</p>
-                  <p className="paragraph">{content}</p>
-                  <div className="blogInfo">
-                    <div className="date">{createdAt}</div>
-                    <div className="author">
-                      <h4>by {authorName}</h4>
-                    </div>
-                  </div>
-                  <div className="btn">
-                    <Link href={"blog/" + _id}>See More</Link>
-                  </div>
+              <div className="post " key={_id}>
+                <div className="imagContainer">
+                  <Image
+                    src={img}
+                    alt={title + " image"}
+                    width={150}
+                    height={150}
+                  />
+                </div>
+                <div className="content">
+                  <h1 className="title ">{title}</h1>
+                  <div className="date">{createdAt}</div>
+                  <p className="description">{description}</p>
+                  <p className="paragragh">{ShortenText(content)}</p>
+
+                  <Button url={"blog/" + _id} text="See More" />
                 </div>
               </div>
             );

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import defultimage from "@/../public/hero.png";
@@ -7,18 +8,16 @@ import "./style.scss";
 import axios from "axios";
 const DashboardShow = ({ name, image }) => {
   const [showCreatePostPanal, setshowCreatePostPanal] = useState(false);
-  const [Posts, setPosts] = useState([]);
+  const [Postsdata, setPostsData] = useState([]);
 
   const updatePosts = async () => {
     const posts = await axios.get("/api/posts/");
-
-    console.log(Posts);
-    setPosts(posts);
+    setPostsData(posts.data);
   };
 
   useEffect(() => {
     updatePosts();
-  }, []);
+  }, [showCreatePostPanal]);
 
   const handelCreatePostPanelState = (state) => {
     setshowCreatePostPanal(state);
@@ -46,7 +45,7 @@ const DashboardShow = ({ name, image }) => {
         />
       )}
       <div className="postsList">
-        {Posts.map((item) => {
+        {Postsdata.map((item) => {
           return (
             <Postshow post={item} updatePosts={updatePosts} key={item._id} />
           );
