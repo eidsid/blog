@@ -6,7 +6,7 @@ export const metadata = {
   description:
     "this is portofolio page contain all the dev&Lap projects tecknology websites",
 };
-const page = () => {
+const Page = () => {
   return (
     <>
       <div className="portoflio">
@@ -30,4 +30,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

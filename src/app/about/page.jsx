@@ -7,7 +7,7 @@ export const metadata = {
   description:
     "this about page Dev digtal Agency website provide web development services",
 };
-const page = () => {
+const Page = () => {
   return (
     <div className="about container">
       <div className="top">
@@ -48,4 +48,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -1,6 +1,6 @@
 import React from "react";
 import "./style.scss";
-const layout = ({ children }) => {
+const Layout = ({ children }) => {
   return (
     <div className="container layOut">
       <h1 className="mainTitle">Our Works</h1>
@@ -10,4 +10,4 @@ const layout = ({ children }) => {
   );
 };
 
-export default layout;
+export default Layout;

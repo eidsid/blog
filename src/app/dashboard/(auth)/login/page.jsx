@@ -4,9 +4,9 @@ import { signIn, useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import "./style.scss";
-
 import Link from "next/link";
-const page = () => {
+
+const Page = () => {
   const [User, setUser] = useState({});
   const session = useSession();
   if (session.status === "authenticated") redirect("/dashboard");
@@ -50,4 +50,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

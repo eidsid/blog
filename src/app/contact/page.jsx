@@ -7,11 +7,11 @@ export const metadata = {
   title: "contact page",
   description: "this is contact page of dev&lap website you can contact theme",
 };
-const page = () => {
+const Page = () => {
   return (
     <div className="container ">
       <div className="contact">
-        <h1 className="title">Let's Keep in Touch</h1>
+        <h1 className="title">Let&apos;s Keep in Touch</h1>
         <div className="items">
           <div className="item">
             <Image src={contactImage} width={200} height={200} alt="hero" />
@@ -30,4 +30,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

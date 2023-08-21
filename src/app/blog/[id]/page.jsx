@@ -17,7 +17,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = async ({ params }) => {
+const Page = async ({ params }) => {
   const blog = await getData(params.id);
   const {
     title,
@@ -47,7 +47,12 @@ const page = async ({ params }) => {
             <p className="paragraph">{description}</p>
             <br />
             <div className="author">
-              <Image src={authorImage} width={50} height={50} />
+              <Image
+                src={authorImage}
+                width={50}
+                height={50}
+                alt={title + " image"}
+              />
               <p>{authorName}</p>
             </div>
           </div>{" "}
@@ -63,4 +68,4 @@ const page = async ({ params }) => {
   );
 };
 
-export default page;
+export default Page;

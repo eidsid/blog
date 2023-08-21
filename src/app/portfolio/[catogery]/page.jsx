@@ -36,7 +36,7 @@ export async function generateMetadata({ params }) {
   };
 }
 
-const page = ({ params }) => {
+const Page = ({ params }) => {
   return (
     <div className="container">
       <div className=" catogrey">
@@ -68,4 +68,4 @@ const page = ({ params }) => {
   );
 };
 
-export default page;
+export default Page;
