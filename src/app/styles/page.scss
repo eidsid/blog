@@ -1,6 +1,6 @@
 @import "./globalsVarabiles.scss";
-.container {
-  @include flex(row, space-between, "", "");
+.home {
+  @include flex(row, space-between, center, "");
   padding: 1rem 2rem;
   margin: 0 auto;
   > * {

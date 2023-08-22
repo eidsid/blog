@@ -4,7 +4,7 @@ import "./styles/page.scss";
 import Button from "./components/button/Button";
 export default function Home() {
   return (
-    <main className="container">
+    <main className="container home">
       <div className="left">
         <h1>Better design for your digital products.</h1>
         <p>
@@ -20,7 +20,7 @@ export default function Home() {
           src={heroImage}
           width={300}
           height={300}
-          alt="heroimage"
+          alt="hero image"
         />
       </div>
     </main>
