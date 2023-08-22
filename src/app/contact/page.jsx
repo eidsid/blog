@@ -1,13 +1,31 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./style.scss";
 import Image from "next/image";
 import contactImage from "@/../public/contact.png";
-import Button from "../components/button/Button";
+import axios from "axios";
+
 export const metadata = {
   title: "contact page",
   description: "this is contact page of dev&lap website you can contact theme",
 };
 const Page = () => {
+  const [Contact, setContact] = useState({});
+  const handelChange = (e) => {
+    const { name, value } = e.target;
+    setContact((prev) => ({ ...prev, [name]: value }));
+  };
+  const handelSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await axios.post("/api/contact/", Contact);
+      e.target.reset();
+      alert("message send success");
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
   return (
     <div className="container ">
       <div className="contact">
@@ -17,11 +35,26 @@ const Page = () => {
             <Image src={contactImage} width={200} height={200} alt="hero" />
           </div>
           <div className="item">
-            <form>
-              <input type="text" className="input" placeholder="name" />
-              <input type="text" className="input" placeholder="email" />
-              <textarea type="text" className="input" placeholder="message" />
-              <Button text="Send" url="/contact" />
+            <form onSubmit={handelSubmit}>
+              <input
+                type="text"
+                placeholder="name"
+                name="name"
+                onChange={handelChange}
+              />
+              <input
+                type="text"
+                placeholder="email"
+                name="email"
+                onChange={handelChange}
+              />
+              <textarea
+                type="text"
+                placeholder="message"
+                name="message"
+                onChange={handelChange}
+              />
+              <input className="btn" type="submit" value="Send" />
             </form>
           </div>
         </div>

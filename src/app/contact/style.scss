@@ -37,7 +37,8 @@
   & form {
     @include flex(column);
     min-width: 400px;
-    .input {
+    textarea,
+    input {
       padding: 0.2rem;
       outline: none;
       margin-top: 1rem;
@@ -45,13 +46,32 @@
       border-color: white;
       color: white;
       &:nth-child(3) {
-        min-height: 90px;
+        min-height: 100px;
+      }
+    }
+    input.btn {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      border-radius: 4px;
+      cursor: pointer;
+
+      &:hover {
+        background-color: #45a049;
       }
     }
   }
 }
 
-.theme.light .contact form .input {
-  color: black;
-  border-color: black;
+.theme.light .contact form {
+  textarea,
+  input {
+    color: black;
+    border-color: black;
+  }
 }

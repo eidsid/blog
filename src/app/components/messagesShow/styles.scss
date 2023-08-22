@@ -1,0 +1,60 @@
+@import "../../styles/globalsVarabiles.scss";
+
+.MessagesShow {
+  @include flex(row, center, center, 1rem);
+  flex-wrap: wrap;
+  max-width: 1000px;
+  margin: 0 auto;
+  .message {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 300px;
+
+    .message-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 5px;
+
+      .message-name {
+        font-weight: bold;
+      }
+
+      .message-date {
+        color: #999;
+        font-size: 12px;
+      }
+    }
+
+    .message-content {
+      .message-email {
+        color: #666;
+        margin-bottom: 5px;
+      }
+
+      .message-text {
+        color: #333;
+      }
+    }
+    .btn {
+      padding: 10px 20px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+
+      &.delete {
+        background-color: #ff0800;
+        &:hover {
+          background-color: #cc4100;
+        }
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+        }
+      }
+    }
+  }
+}

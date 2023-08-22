@@ -6,6 +6,7 @@ import Postshow from "../postShow/PsotShow";
 import CreatePost from "../createpost/CreatePost";
 import "./style.scss";
 import axios from "axios";
+import MessagesShow from "../messagesShow/messagesShow";
 const DashboardShow = ({ name, image }) => {
   const [showCreatePostPanal, setshowCreatePostPanal] = useState(false);
   const [Postsdata, setPostsData] = useState([]);
@@ -14,7 +15,6 @@ const DashboardShow = ({ name, image }) => {
     const posts = await axios.get("/api/posts/");
     setPostsData(posts.data);
   };
-
   useEffect(() => {
     updatePosts();
   }, [showCreatePostPanal]);
@@ -53,6 +53,10 @@ const DashboardShow = ({ name, image }) => {
             <Postshow post={item} updatePosts={updatePosts} key={item._id} />
           );
         })}
+      </div>
+      <div className="messagesList">
+        <div className="title">messagesList</div>
+        <MessagesShow />
       </div>
     </div>
   );
