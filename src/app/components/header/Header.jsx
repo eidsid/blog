@@ -1,40 +1,43 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./header.scss";
 import Link from "next/link";
 import Theme from "../theme/Theme";
 import { signOut, useSession } from "next-auth/react";
+const links = [
+  {
+    text: "Home",
+    url: "/",
+  },
+  {
+    text: "Portfolio",
+    url: "/portfolio",
+  },
+  {
+    text: "About",
+    url: "/about",
+  },
+  {
+    text: "Dashboard",
+    url: "/dashboard",
+  },
+  {
+    text: "Blog",
+    url: "/blog",
+  },
+  {
+    text: "Contact",
+    url: "/contact",
+  },
+];
 
 const Header = () => {
   const session = useSession();
   const [Active, setActive] = useState(false);
-  const links = [
-    {
-      text: "Home",
-      url: "/",
-    },
-    {
-      text: "Portfolio",
-      url: "/portfolio",
-    },
-    {
-      text: "About",
-      url: "/about",
-    },
-    {
-      text: "Dashboard",
-      url: "/dashboard",
-    },
-    {
-      text: "Blog",
-      url: "/blog",
-    },
-    {
-      text: "Contact",
-      url: "/contact",
-    },
-  ];
-
+  const [Auth, setAuth] = useState(false);
+  useEffect(() => {
+    session.status === "authenticated" ? setAuth(true) : setAuth(false);
+  }, [session?.status]);
   return (
     <div className="header">
       <div className="logo">DIV</div>
@@ -48,8 +51,12 @@ const Header = () => {
           );
         })}
       </div>
-      {session.status === "authanticated" && (
-        <button onClick={() => signOut}>Log Out</button>
+      {Auth ? (
+        <button className="signoutButton" onClick={() => signOut()}>
+          Log Out
+        </button>
+      ) : (
+        <></>
       )}
       <div className="navToggle" onClick={() => setActive((prev) => !prev)}>
         <div className="toggleIcon"></div>
