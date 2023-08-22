@@ -4,10 +4,15 @@ import axios from "axios";
 import { useSession } from "next-auth/react";
 
 const CreatePost = ({ updatePosts, handelCreatePostPanelState }) => {
-  const session = useSession();
-
   const [Post, setPost] = useState("");
-  let authorName = session?.data?.user?.name;
+  const [authorName, setauthorName] = useState("");
+  const session = useSession();
+  useEffect(() => {
+    const user = session?.data?.user;
+    if (user) {
+      setauthorName(user.name);
+    }
+  }, [session?.status]);
 
   const handleClose = () => handelCreatePostPanelState(false);
   const handelChange = (e) => {
@@ -32,7 +37,7 @@ const CreatePost = ({ updatePosts, handelCreatePostPanelState }) => {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className="container">
+    <form onSubmit={handleSubmit} className="container createPost">
       <div onClick={handleClose} className="close"></div>
       <h2 className="title">Create a New Post</h2>
       <label>
@@ -52,11 +57,21 @@ const CreatePost = ({ updatePosts, handelCreatePostPanelState }) => {
         Content:
         <textarea required name="content" onChange={handelChange} />
       </label>
+
       <label>
+        <div>
+          you can only use images from this site
+          <a href="https://www.pexels.com/" className="link_decore">
+            {" "}
+            pexels
+          </a>
+        </div>
         Image URL:
         <input required name="img" type="text" onChange={handelChange} />
       </label>
-      <button type="submit">Create Post</button>
+      <button type="submit" className="btn">
+        Create Post
+      </button>
     </form>
   );
 };

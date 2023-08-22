@@ -1,4 +1,4 @@
-form {
+form.createPost {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -67,6 +67,20 @@ form {
     }
     &:after {
       transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+  .link_decore {
+    position: relative;
+    color: #000000;
+    &::after {
+      content: "";
+      position: absolute;
+      top: 110%;
+      left: 2px;
+      width: 100%;
+      height: 1px;
+      margin-top: 0.2rem;
+      background-color: blue;
     }
   }
 }
