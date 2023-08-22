@@ -23,7 +23,7 @@ const DashboardShow = ({ name, image }) => {
     setshowCreatePostPanal(state);
   };
   return (
-    <div className=" dashshow">
+    <div className="dashshow">
       <div className="dashshow_header">
         <div className="name">{name}</div>
         <Image
@@ -34,7 +34,10 @@ const DashboardShow = ({ name, image }) => {
         />
       </div>
       <div className="btnContaineer">
-        <button onClick={() => handelCreatePostPanelState(true)}>
+        <button
+          onClick={() => handelCreatePostPanelState(true)}
+          className="btn"
+        >
           Create Post
         </button>
       </div>
