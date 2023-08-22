@@ -2,11 +2,11 @@
 .contact {
   @include flex(column, "", "", 3rem);
   width: 100%;
-  .title {
+  & .title {
     text-align: center;
     margin: 3rem auto;
   }
-  .items {
+  & .items {
     @include flex("", space-evenly);
     .item img {
       object-fit: contain;
@@ -26,15 +26,15 @@
     }
   }
   @media (max-width: $mobile) {
-    .items {
+    & .items {
       @include flex(column, "", center);
     }
-    .title {
+    & .title {
       text-align: center;
       margin: 1rem auto;
     }
   }
-  form {
+  & form {
     @include flex(column);
     min-width: 400px;
     .input {
