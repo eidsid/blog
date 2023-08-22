@@ -1,7 +1,7 @@
+@import "../../styles/globalsVarabiles.scss";
+
 .postShow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flex(column, "", center);
   padding: 20px;
   width: 200px;
   height: fit-content;
@@ -25,17 +25,37 @@
   .author {
     font-style: italic;
   }
+  .btns {
+    @include flex(row, space-between, center, 1rem);
 
-  .btn {
-    padding: 10px 20px;
-    background-color: #ff0800;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
-    &:hover {
-      background-color: #cc4100;
+    .btn {
+      padding: 10px 20px;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      &.edit {
+        background-color: #007bff;
+
+        &:hover {
+          background-color: #0056b3;
+        }
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+        }
+      }
+      &.delete {
+        background-color: #ff0800;
+        &:hover {
+          background-color: #cc4100;
+        }
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.5);
+        }
+      }
     }
   }
 }
