@@ -16,6 +16,20 @@ export const GET = async (reques, { params }) => {
   }
 };
 
+export const PUT = async (req, { params }) => {
+  const { id } = params;
+  const post = await req.json();
+
+  try {
+    await connect();
+    await Posts.findByIdAndUpdate(id, post);
+    console.log("success");
+    return new NextResponse("edit success", { status: 200 });
+  } catch (error) {
+    return new NextResponse(error.message, { status: 500 });
+  }
+};
+
 export const DELETE = async (reques, { params }) => {
   const { id } = params;
 
