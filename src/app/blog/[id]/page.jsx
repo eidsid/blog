@@ -1,71 +1,59 @@
 import React from "react";
 import "./styles.scss";
 import Image from "next/image";
-import Link from "next/link";
+import { notFound } from "next/navigation";
 import axios from "axios";
+import date from "@/app/utils/date";
 
-const getData = async (id) => {
-  const post = await axios.get(`/api/posts/${id}`);
-  return post.data;
-};
+async function getData(id) {
+  const res = await axios.get(`http://localhost:3000/api/posts/${id}`, {
+    cache: "no-store",
+  });
+  if (res.data) {
+    return res.data;
+  } else {
+    return notFound();
+  }
+}
 
 export async function generateMetadata({ params }) {
-  const blog = await getData(params.id);
+  const post = await getData(params.id);
   return {
-    title: blog.title,
-    description: blog.description,
+    title: post.title,
+    description: post.desc,
   };
 }
 
-const Page = async ({ params }) => {
-  const blog = await getData(params.id);
-  const {
-    title,
-    description,
-    content,
-    img,
-    _id,
-    createdAt,
-    authorName,
-    authorImage,
-  } = blog;
-
+const BlogPost = async ({ params }) => {
+  const post = await getData(params.id);
+  const { title, description, content, img, createdAt, authorName } = post;
   return (
-    <div className="blog container">
-      <div className="top" id={_id}>
-        <h1>
-          <Link href="/blog" className="galleryLink">
-            Blogs
-          </Link>
-        </h1>
-      </div>
-
-      <div>
-        <div className="top">
-          <div className="subitem">
-            <h1 className="title">{title}</h1>
-            <p className="paragraph">{description}</p>
-            <br />
-            <div className="author">
-              <Image
-                src={authorImage}
-                width={50}
-                height={50}
-                alt={title + " image"}
-              />
-              <p>{authorName}</p>
-            </div>
-          </div>{" "}
-          <div className="subitem">
-            <Image src={img} width={50} height={50} alt={title} />
+    <div className="container blog">
+      <div className="top">
+        <div className="info">
+          <h1 className="title">{title}</h1>
+          <div>date : {date(createdAt)}</div>
+          <p className="desc">{description}</p>
+          <div className="author">
+            <Image
+              src={img}
+              alt={title + "image"}
+              width={40}
+              height={40}
+              className="avatar"
+            />
+            <span className="username">{authorName && "by" + authorName}</span>
           </div>
         </div>
-        <div className="bottom">
-          <p>{content}</p>
+        <div className="imageContainer">
+          <Image src={img} alt={title + "image"} fill={true} />
         </div>
+      </div>
+      <div className="content">
+        <p className="text">{content}</p>
       </div>
     </div>
   );
 };
 
-export default Page;
+export default BlogPost;

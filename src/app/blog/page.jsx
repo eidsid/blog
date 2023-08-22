@@ -6,12 +6,13 @@ import "./style.scss";
 import Button from "../components/button/Button";
 import { ShortenText } from "../utils/ShortenText";
 import Head from "next/head";
+import date from "../utils/date";
 
 const Page = () => {
   const [postsData, setpostsData] = useState([]);
   const updatePosts = async () => {
     const posts = await axios.get("/api/posts/");
-    console.log(posts);
+
     setpostsData(posts.data);
   };
 
@@ -28,7 +29,7 @@ const Page = () => {
           content="this is blog page contain all posts"
         />
       </Head>
-      <div className="blogs container">
+      <div className="container blogs">
         <div className="title">
           <h1>Latest posts</h1>
         </div>
@@ -47,7 +48,7 @@ const Page = () => {
                   </div>
                   <div className="content">
                     <h1 className="title ">{title}</h1>
-                    <div className="date">{createdAt}</div>
+                    <div className="date">{date(createdAt)}</div>
                     <p className="description">{description}</p>
                     <p className="paragragh">{ShortenText(content)}</p>
 
