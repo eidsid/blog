@@ -1,28 +1,53 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { signIn, useSession } from "next-auth/react";
-import { redirect } from "next/navigation";
 import { useState } from "react";
 import "./style.scss";
 import Link from "next/link";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const Page = () => {
   const [User, setUser] = useState({});
   const session = useSession();
-  if (session.status === "authenticated") redirect("/dashboard");
-
+  const router = useRouter();
+  const params = useSearchParams();
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  useEffect(() => {
+    setError(params.get("error"));
+    setSuccess(params.get("success"));
+  }, [params]);
   const handleSubmit = async (event) => {
     event.preventDefault();
-    signIn("credentials", User);
+    try {
+      let signin = await signIn("credentials", {
+        ...User,
+        redirect: false,
+      });
+      if (signin.error) {
+        setError(signin.error);
+      }
+    } catch (error) {
+      setError(error.error);
+    }
   };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setUser((prev) => ({ ...prev, [name]: value }));
   };
+  if (session.status === "loading") {
+    return <p className="loading container">Loading...</p>;
+  }
+  if (session.status === "authenticated") {
+    router?.push("/dashboard");
+  }
 
   return (
     <div className="container login">
+      {success && (
+        <h1 className="title">{success ? success : "Welcome Back"}</h1>
+      )}
       <form onSubmit={handleSubmit}>
         <label className="label">
           Email:
@@ -37,6 +62,7 @@ const Page = () => {
             required
           />
         </label>
+        {error && <p className="errorMessage">{error}</p>}
         <button type="submit" onClick={handleSubmit}>
           Login
         </button>

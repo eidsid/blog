@@ -7,13 +7,16 @@ import CreatePost from "../createpost/CreatePost";
 import "./style.scss";
 import axios from "axios";
 import MessagesShow from "../messagesShow/messagesShow";
+import Loading from "../loading/Loading";
 const DashboardShow = ({ name, image }) => {
   const [showCreatePostPanal, setshowCreatePostPanal] = useState(false);
   const [Postsdata, setPostsData] = useState([]);
+  const [loading, setloading] = useState(true);
 
   const updatePosts = async () => {
     const posts = await axios.get("/api/posts/");
     setPostsData(posts.data);
+    setloading(false);
   };
   useEffect(() => {
     updatePosts();
@@ -47,6 +50,7 @@ const DashboardShow = ({ name, image }) => {
           handelCreatePostPanelState={handelCreatePostPanelState}
         />
       )}
+      {loading && <Loading />}
       <div className="postsList">
         {Postsdata.map((item) => {
           return (

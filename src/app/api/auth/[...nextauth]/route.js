@@ -4,31 +4,34 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
 import GithubProvider from "next-auth/providers/github";
-
+export const authOptions = {
+  session: {
+    strartegy: "jwt",
+  },
+};
 const handler = NextAuth({
   providers: [
     CredentialsProvider({
-      id: "credentials",
-      name: "Credentials",
-      async authorize(credentials) {
+      type: "credentials",
+      credentials: {},
+      async authorize(credentials, req) {
+        const { email, password } = credentials;
         //Check if the user exists.
         await connect();
 
         try {
-          const user = await User.findOne({
-            email: credentials.email,
-          });
+          const user = await User.findOne({ email });
 
           if (user) {
             const isPasswordCorrect = await bcrypt.compare(
-              credentials.password,
+              password,
               user.password
             );
 
             if (isPasswordCorrect) {
               return user;
             } else {
-              throw new Error("Wrong Credentials!");
+              throw new Error("Wrong password!");
             }
           } else {
             throw new Error("User not found!");
@@ -43,8 +46,21 @@ const handler = NextAuth({
       clientSecret: process.env.GITHUB_SECRET,
     }),
   ],
-  pages: {
-    error: "/dashboard/login",
+  callbacks: {
+    jwt(params) {
+      if (params.user?.email) {
+        params.token.email = params.user?.email;
+        params.token.id = params.token.user?._id;
+      }
+      return params.token;
+    },
+    session({ session, token }) {
+      if (session.user) {
+        session.user.id = token.id;
+        session.user.email = token.email;
+      }
+      return session;
+    },
   },
 });
 
