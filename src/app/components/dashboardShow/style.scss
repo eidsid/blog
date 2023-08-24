@@ -12,8 +12,9 @@
     cursor: pointer;
   }
   .postsList {
-    @include flex("", space-between, center, 1rem);
+    @include flex("", center, center, 1rem);
     flex-grow: 2;
+    flex-wrap: wrap;
   }
   .messagesList {
     margin: 1rem 0;
