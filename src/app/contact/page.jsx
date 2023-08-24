@@ -5,10 +5,6 @@ import Image from "next/image";
 import contactImage from "@/../public/contact.png";
 import axios from "axios";
 
-export const metadata = {
-  title: "contact page",
-  description: "this is contact page of dev&lap website you can contact theme",
-};
 const Page = () => {
   const [Contact, setContact] = useState({});
   const handelChange = (e) => {
@@ -27,39 +23,48 @@ const Page = () => {
   };
 
   return (
-    <div className="container ">
-      <div className="contact">
-        <h1 className="title">Let&apos;s Keep in Touch</h1>
-        <div className="items">
-          <div className="item">
-            <Image src={contactImage} width={200} height={200} alt="hero" />
-          </div>
-          <div className="item">
-            <form onSubmit={handelSubmit}>
-              <input
-                type="text"
-                placeholder="name"
-                name="name"
-                onChange={handelChange}
-              />
-              <input
-                type="text"
-                placeholder="email"
-                name="email"
-                onChange={handelChange}
-              />
-              <textarea
-                type="text"
-                placeholder="message"
-                name="message"
-                onChange={handelChange}
-              />
-              <input className="btn" type="submit" value="Send" />
-            </form>
+    <>
+      <Head>
+        <title>contact page</title>
+        <meta
+          name="description"
+          content="this is contact page of dev&lap website you can contact Theme"
+        />
+      </Head>
+      <div className="container ">
+        <div className="contact">
+          <h1 className="title">Let&apos;s Keep in Touch</h1>
+          <div className="items">
+            <div className="item">
+              <Image src={contactImage} width={200} height={200} alt="hero" />
+            </div>
+            <div className="item">
+              <form onSubmit={handelSubmit}>
+                <input
+                  type="text"
+                  placeholder="name"
+                  name="name"
+                  onChange={handelChange}
+                />
+                <input
+                  type="text"
+                  placeholder="email"
+                  name="email"
+                  onChange={handelChange}
+                />
+                <textarea
+                  type="text"
+                  placeholder="message"
+                  name="message"
+                  onChange={handelChange}
+                />
+                <input className="btn" type="submit" value="Send" />
+              </form>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
