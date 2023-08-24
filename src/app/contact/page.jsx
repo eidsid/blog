@@ -4,6 +4,7 @@ import "./style.scss";
 import Image from "next/image";
 import contactImage from "@/../public/contact.png";
 import axios from "axios";
+import Head from "next/head";
 
 const Page = () => {
   const [Contact, setContact] = useState({});
