@@ -12,7 +12,7 @@ const CreatePost = ({ updatePosts, handelCreatePostPanelState }) => {
     if (user) {
       setauthorName(user.name);
     }
-  }, [session?.status]);
+  });
 
   const handleClose = () => handelCreatePostPanelState(false);
   const handelChange = (e) => {
