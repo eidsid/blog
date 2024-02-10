@@ -11,6 +11,7 @@ import Loading from "../loading/Loading";
 const DashboardShow = ({ name, image }) => {
   const [showCreatePostPanal, setshowCreatePostPanal] = useState(false);
   const [Postsdata, setPostsData] = useState([]);
+  const [Post, setPost] = useState({ authorName: name });
   const [loading, setloading] = useState(true);
 
   const updatePosts = async () => {
@@ -18,6 +19,7 @@ const DashboardShow = ({ name, image }) => {
     setPostsData(posts.data);
     setloading(false);
   };
+
   useEffect(() => {
     updatePosts();
   }, [showCreatePostPanal]);
@@ -25,6 +27,7 @@ const DashboardShow = ({ name, image }) => {
   const handelCreatePostPanelState = (state) => {
     setshowCreatePostPanal(state);
   };
+
   return (
     <div className="dashshow">
       <div className="dashshow_header">
@@ -48,6 +51,8 @@ const DashboardShow = ({ name, image }) => {
         <CreatePost
           updatePosts={updatePosts}
           handelCreatePostPanelState={handelCreatePostPanelState}
+          setPost={setPost}
+          Post={Post}
         />
       )}
       {loading && <Loading />}
