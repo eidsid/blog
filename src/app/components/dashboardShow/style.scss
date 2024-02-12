@@ -3,6 +3,9 @@
   width: 100%;
   height: 100%;
   @include flex(column, space-between, center, 1rem);
+  .dashshow_header {
+    @include flex("", space-between, space-between, 1rem);
+  }
   & .btnContaineer .btn {
     background-color: blue;
     color: white;

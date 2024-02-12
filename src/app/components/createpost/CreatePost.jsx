@@ -6,6 +6,7 @@ const CreatePost = ({
   setPost,
   updatePosts,
   Post,
+  authorName,
 }) => {
   const handleClose = () => handelCreatePostPanelState(false);
 
@@ -16,9 +17,10 @@ const CreatePost = ({
 
   const HandleSubmit = async (e) => {
     e.preventDefault();
-
+    if (authorName) {
+      setPost((prev) => ({ ...prev, authorName }));
+    }
     try {
-      console.log(Post);
       if (
         (Post.title && Post.description && Post.content && Post.img,
         Post.authorName)

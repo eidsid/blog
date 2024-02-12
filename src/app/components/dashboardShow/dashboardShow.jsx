@@ -8,10 +8,10 @@ import "./style.scss";
 import axios from "axios";
 import MessagesShow from "../messagesShow/messagesShow";
 import Loading from "../loading/Loading";
-const DashboardShow = ({ name, image }) => {
+const DashboardShow = ({ user }) => {
   const [showCreatePostPanal, setshowCreatePostPanal] = useState(false);
   const [Postsdata, setPostsData] = useState([]);
-  const [Post, setPost] = useState({ authorName: name });
+  const [Post, setPost] = useState([]);
   const [loading, setloading] = useState(true);
 
   const updatePosts = async () => {
@@ -31,12 +31,12 @@ const DashboardShow = ({ name, image }) => {
   return (
     <div className="dashshow">
       <div className="dashshow_header">
-        <div className="name">{name}</div>
+        <div className="name">{user?.name || user.email}</div>
         <Image
-          src={image ? image : defultimage}
+          src={user?.image || defultimage}
           width={30}
           height={30}
-          alt={`user image icon ${name}`}
+          alt={`user image icon ${user?.name || user?.email}`}
         />
       </div>
       <div className="btnContaineer">
@@ -53,6 +53,7 @@ const DashboardShow = ({ name, image }) => {
           handelCreatePostPanelState={handelCreatePostPanelState}
           setPost={setPost}
           Post={Post}
+          authorName={user.name || user.email}
         />
       )}
       {loading && <Loading />}

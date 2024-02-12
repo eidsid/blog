@@ -80,8 +80,14 @@
   }
 }
 
-@media (max-width: $mobile) {
-  .theme {
+.theme {
+  .header .links a {
+    &.linkborder {
+      background-color: rgb(158, 169, 155);
+    }
+  }
+
+  @media (max-width: calc($mobile + 200px)) {
     &.dark .header .links {
       background-color: rgb(158, 169, 155);
       a:hover {

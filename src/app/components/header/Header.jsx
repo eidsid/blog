@@ -4,6 +4,8 @@ import "./header.scss";
 import Link from "next/link";
 import Theme from "../theme/Theme";
 import { signOut, useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+
 const links = [
   {
     text: "Home",
@@ -35,6 +37,7 @@ const Header = () => {
   const session = useSession();
   const [Active, setActive] = useState(false);
   const [Auth, setAuth] = useState(false);
+  const pathName = usePathname();
   useEffect(() => {
     session.status === "authenticated" ? setAuth(true) : setAuth(false);
   }, [session?.status]);
@@ -45,7 +48,11 @@ const Header = () => {
       <div className={`links ${Active && "active"}`}>
         {links.map(({ text, url }, index) => {
           return (
-            <Link href={url} key={index}>
+            <Link
+              href={url}
+              key={index}
+              className={pathName === url && "linkborder"}
+            >
               <div>{text}</div>
             </Link>
           );
