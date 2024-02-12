@@ -51,7 +51,7 @@ const Header = () => {
             <Link
               href={url}
               key={index}
-              className={pathName === url && "linkborder"}
+              className={pathName === url ? "linkborder" : ""}
             >
               <div>{text}</div>
             </Link>
