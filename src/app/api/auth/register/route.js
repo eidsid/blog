@@ -9,7 +9,7 @@ export const POST = async (req) => {
     await connect();
 
     // check is user is exist
-    const user = User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user) {
       throw new Error("User Already registered");
     } else {

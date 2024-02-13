@@ -17,6 +17,12 @@ const Page = () => {
     setError(params.get("error"));
     setSuccess(params.get("success"));
   }, [params]);
+  useEffect(() => {
+    if (session && session?.status === "authenticated") {
+      router.push("/dashboard");
+    }
+  }, [session, router]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -38,9 +44,6 @@ const Page = () => {
   };
   if (session.status === "loading") {
     return <p className="loading container">Loading...</p>;
-  }
-  if (session.status === "authenticated") {
-    router?.push("/dashboard");
   }
 
   return (
