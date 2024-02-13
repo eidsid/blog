@@ -52,6 +52,7 @@ const Header = () => {
               href={url}
               key={index}
               className={pathName === url ? "linkborder" : ""}
+              onClick={() => setActive(false)}
             >
               <div>{text}</div>
             </Link>
